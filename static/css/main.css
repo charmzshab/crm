@@ -15,3 +15,8 @@ body{
 #orders-pending{
     background-color: #7CD1C0;
 }
+
+/* this is just a hack please fix it */
+nav{
+    height: 59px;
+}
