@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 
 from .models import *
-from .forms import OrderForm, CreateUserForm
+from .forms import OrderForm, CreateUserForm,CustomerForm
 from .filters import OrderFilter
 from .decorators import unauthenticated_user,allowed_users,admin_only
 
@@ -26,6 +26,10 @@ def registerPage(request):
 
             group = Group.objects.get(name='customer')
             user.groups.add(group)
+            Customer.objects.create(
+                user=user,
+                name=user.username
+            )
   
 
             messages.success(request,'Account was created for '+username)
@@ -76,14 +80,42 @@ def home(request):
 
 	return render(request, 'accounts/dashboard.html', context)
 
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['customer'])
 def userPage(request):
-    context = {}
+    orders = request.user.customer.order_set.all()
+
+    total_orders = orders.count()
+    delivered = orders.filter(status='Delivered').count()
+    pending = orders.filter(status='Pending').count()
+
+
+    context = {'orders':orders,'customers':customers,
+                'total_orders':total_orders,'delivered':delivered,
+                'pending':pending}
     return render(request, 'accounts/user.html',context)
+
+
+# @allowed_users(allowed_roles=['customer'])
+@login_required(login_url='login')
+def accountSettings(request):
+    customer = request.user.customer
+    form = CustomerForm(instance=customer)
+
+    if request.method == 'POST':
+        form = CustomerForm(request.POST,request.FILES,instance=customer)
+        if form.is_valid():
+            form.save()
+
+
+    context = {'form':form}
+    return render(request, 'accounts/account_settings.html',context)
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
 def products(request):
     products = Product.objects.all()
+
     return render(request,'accounts/products.html',{'products':products})
 
 @login_required(login_url='login')
