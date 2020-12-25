@@ -134,4 +134,24 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 
+# SMTP Configuration
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
+
+
+'''
+export EMAIL_USER="kmharouna@gmail.com"
+export EMAIL_PASS="2bfr##@w0k"
+
+export AWS_ACCESS_KEY_ID="AKIAQOOMT2UGDIQXBVWO"
+export AWS_SECRET_ACCESS_KEY="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"
+export AWS_STORAGE_BUCKET_NAME="django-unchained-files"
+export SECRET_KEY="2a60710d3544d4ca9c0fa3a9a3db4520fee00791c6af89ae"
+export DEBUG_VALUE="True"
+
+'''
