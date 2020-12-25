@@ -80,13 +80,48 @@ WSGI_APPLICATION = 'crm.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+
+'''
+STEPS FOR DJANGO POSTGRESQL DATABASE + AWS RDS
+1 - Download and install PostgreSQL & PG Admin
+2 - Login to PG admin & Create Database
+3 - Connect database to Django App and run migrations
+4 - Create database on AWS
+5 - Connect to live AWS Database with PG admin & Django
+'''
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'crm_db',
+#         'USER': 'postgres',
+#         'PASSWORD':'root',
+#         'HOST':'localhost',
+#         'PORT':'5432'
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'demo_1',
+        'USER': 'charmz007',
+        'PASSWORD':'password256',
+        'HOST':'database-1.crcycs3adsg4.us-west-2.rds.amazonaws.com',
+        'PORT':'5432'
     }
 }
 
+# psql --host=database-1.crcycs3adsg4.us-west-2.rds.amazonaws.com --port=5432 --username=charmz007 --password --dbname=demo_1
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
