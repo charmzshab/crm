@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'yz!6gc!*lq8_7z)@4w@2qg#c2d27qs9djrhr9s^xf#v50)h2%a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['charmz-crm.herokuapp.com','127.0.0.1']
 
 
 # Application definition
