@@ -38,11 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # 'accounts',
+    'accounts.apps.AccountsConfig',
 
     'django_filters',
 
-    'accounts.apps.AccountsConfig', 
+    'storages', 
     
 ]
 
@@ -179,14 +179,14 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 
 
-'''
-export EMAIL_USER="kmharouna@gmail.com"
-export EMAIL_PASS="2bfr##@w0k"
 
-export AWS_ACCESS_KEY_ID="AKIAQOOMT2UGDIQXBVWO"
-export AWS_SECRET_ACCESS_KEY="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"
-export AWS_STORAGE_BUCKET_NAME="django-unchained-files"
-export SECRET_KEY="2a60710d3544d4ca9c0fa3a9a3db4520fee00791c6af89ae"
-export DEBUG_VALUE="True"
+# S3 Bucket Config
 
-'''
+AWS_ACCESS_KEY_ID="AKIAQOOMT2UGHTRY57NL"
+AWS_SECRET_ACCESS_KEY="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"
+AWS_STORAGE_BUCKET_NAME="charmz-crm-bucket"
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'

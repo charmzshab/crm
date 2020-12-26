@@ -53,9 +53,9 @@ def logoutUser(request):
     return redirect('login')
 
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 # @admin_only
-@allowed_users(allowed_roles=['admin'])
+# @allowed_users(allowed_roles=['admin'])
 def home(request):
 	orders = Order.objects.all()
 	customers = Customer.objects.all()
@@ -72,8 +72,8 @@ def home(request):
 
 	return render(request, 'accounts/dashboard.html', context)
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['customer'])
+# @login_required(login_url='login')
+# @allowed_users(allowed_roles=['customer'])
 def userPage(request):
     orders = request.user.customer.order_set.all()
 
@@ -89,7 +89,7 @@ def userPage(request):
 
 
 # @allowed_users(allowed_roles=['customer'])
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def accountSettings(request):
     customer = request.user.customer
     form = CustomerForm(instance=customer)
