@@ -130,6 +130,8 @@ DATABASES['default'].update(db_from_env)
 
 # psql --host=database-1.crcycs3adsg4.us-west-2.rds.amazonaws.com --port=5432 --username=charmz007 --password --dbname=demo_1
 
+# heroku database url --> postgres://USERNAME:PASSWORD@database url endpoint:PORT/DB NAME
+
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
